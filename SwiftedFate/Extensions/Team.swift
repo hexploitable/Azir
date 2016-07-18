@@ -21,7 +21,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerId: String - Summoner to get team data from
      */
-    public func getTeam(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeams(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: teamBase, region: region, endpoint: "by-summoner/\(summonerId)")
       
@@ -32,7 +32,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerIds: String - Summoners to get team data from
      */
-    public func getTeam(region region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeams(region region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let summonerIds = summonerIds.joinWithSeparator(",")
       let url = parent.createUrl(base: teamBase, region: region, endpoint: "by-summoner/\(summonerIds)")

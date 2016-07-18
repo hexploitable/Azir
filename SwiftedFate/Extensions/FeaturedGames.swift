@@ -22,7 +22,7 @@ public extension SwiftedFate {
      */
     public func getFeaturedGames(region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
-      let url = parent.createUrl(base: self.featuredGamesBase, region: region, endpoint: "")
+      let url = parent.createUrl(base: featuredGamesBase, region: region, endpoint: "")
       
       parent.request(url: url, completion: completion)
     }

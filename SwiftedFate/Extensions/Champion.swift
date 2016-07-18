@@ -23,7 +23,7 @@ public extension SwiftedFate {
     public func getChampions(region region: Region? = nil, freeToPlay: Bool = false, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let options = ["freeToPlay": freeToPlay.description]
-      let url = parent.createUrl(base: self.championBase, region: region, endpoint: "", options: options)
+      let url = parent.createUrl(base: championBase, region: region, endpoint: "", options: options)
       
       parent.request(url: url, completion: completion)
     }

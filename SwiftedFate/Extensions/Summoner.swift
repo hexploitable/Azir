@@ -66,7 +66,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      summonerId: String - Summoner ID to request masteries from
      */
-    public func getSummonerMasteries(region region: Region? = nil, byId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getMasteries(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: summonerBase, region: region, endpoint: summonerId + "/masteries")
       
@@ -77,7 +77,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      summonerIds: Array<String> - Summoner IDs to request masteries from
      */
-    public func getSummonerMasteries(region region: Region? = nil, byIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getMasteries(region region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let summonerIds = summonerIds.joinWithSeparator(",")
       let url = parent.createUrl(base: summonerBase, region: region, endpoint: summonerIds + "/masteries")
@@ -89,7 +89,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      summonerId: String - Summoner ID to request name from
      */
-    public func getSummonerName(region region: Region? = nil, byId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getName(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: summonerBase, region: region, endpoint: summonerId + "/name")
       
@@ -100,7 +100,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      summonerIds: Array<String> - Summoner IDs to request names from
      */
-    public func getSummonerName(region region: Region? = nil, byIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getName(region region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let summonerIds = summonerIds.joinWithSeparator(",")
       let url = parent.createUrl(base: summonerBase, region: region, endpoint: summonerIds + "/name")
@@ -112,7 +112,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      summonerId: String - Summoner ID to request runes from
      */
-    public func getSummonerRunes(region region: Region? = nil, byId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getRunes(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: summonerBase, region: region, endpoint: summonerId + "/runes")
       
@@ -123,7 +123,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      summonerIds: Array<String> - Summoner IDs to request runes from
      */
-    public func getSummonerRunes(region region: Region? = nil, byIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getRunes(region region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let summonerIds = summonerIds.joinWithSeparator(",")
       let url = parent.createUrl(base: summonerBase, region: region, endpoint: summonerIds + "/runes")
