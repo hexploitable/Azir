@@ -29,7 +29,7 @@ public class SwiftedFate {
   public let Team = team()
     
   //Create internal session for utility
-  internal let session = NSURLSession.sharedSession()
+  internal let session = URLSession.shared
     
   /*
    @param apiKey - Set's frameworks api key for request usage. Editable.

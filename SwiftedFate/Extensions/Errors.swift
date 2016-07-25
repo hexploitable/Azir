@@ -18,7 +18,7 @@ public extension SwiftedFate {
 }
 
 //Get status code of response, so I can spit out an error
-internal extension NSHTTPURLResponse {
+internal extension HTTPURLResponse {
   
   func getSFError() -> SwiftedFate.Error {
     switch self.statusCode {

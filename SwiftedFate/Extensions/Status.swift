@@ -18,7 +18,7 @@ public extension SwiftedFate {
     private let statusBase = "http://status.leagueoflegends.com/shards/"
     
     //Get all league server shards
-    public func getShards(region region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
+    public func getShards(region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
       if region == nil {
         parent.request(url: statusBase, completion: completion)
       }else {

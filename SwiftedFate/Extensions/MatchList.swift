@@ -21,7 +21,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerId: String - Summoner to get match list data from
      */
-    public func getMatchList(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getMatchList(region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: matchListBase, region: region, endpoint: summonerId)
       

@@ -20,7 +20,7 @@ public extension SwiftedFate {
     /*
      @param region: Region (Optional) - Region to execute against
      */
-    public func getFeaturedGames(region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
+    public func getFeaturedGames(_ region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: featuredGamesBase, region: region, endpoint: "")
       
