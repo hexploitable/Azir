@@ -11,7 +11,7 @@ import Foundation
 //Champion Mastery
 public extension SwiftedFate {
   
-  public final class championMastery {
+  public class _championMastery {
     
     internal var parent: SwiftedFate!
     
@@ -23,7 +23,7 @@ public extension SwiftedFate {
      summonerId: String - The Summoner ID to get specific champion mastery from
      championId: String - The Champion ID to get from summoner
      */
-    public func getChampion(region region: Region? = nil, platform: Region.Platform? = nil, bySummonerId summonerId: String, byChampionId championId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getChampion(region: Region? = nil, platform: Platform? = nil, bySummonerId summonerId: String, andChampionId championId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionData = (region: (region ?? parent.region)!, platform: (platform ?? parent.platform)!)
       let url = parent.createUrl(base: championMasteryBase, region: regionData.region, endpoint: summonerId + "/champion/" + championId, platform: regionData.platform)
       
@@ -35,7 +35,7 @@ public extension SwiftedFate {
      platform: Region.Platform (Optional) - The platform to execure against
      summonerId: String - The Summoner ID to get champion masteries from
      */
-    public func getChampions(region region: Region? = nil, platform: Region.Platform? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getChampions(region: Region? = nil, platform: Platform? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionData = (region: (region ?? parent.region)!, platform: (platform ?? parent.platform)!)
       let url = parent.createUrl(base: championMasteryBase, region: regionData.region, endpoint: summonerId + "/champions", platform: regionData.platform)
       
@@ -47,7 +47,7 @@ public extension SwiftedFate {
      platform: Region.Platform (Optional) - The platform to execure against
      summonerId: String - The Summoner ID to get champion mastery score from
      */
-    public func getScore(region region: Region? = nil, platform: Region.Platform? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getScore(region: Region? = nil, platform: Platform? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionData = (region: (region ?? parent.region)!, platform: (platform ?? parent.platform)!)
       let url = parent.createUrl(base: championMasteryBase, region: regionData.region, endpoint: summonerId + "/score", platform: regionData.platform)
       
@@ -60,7 +60,7 @@ public extension SwiftedFate {
      summonerId: String - The Summoner ID to get top champions from
      count: Int (Optional) - The amount of top champions to get
      */
-    public func getTopChampions(region region: Region? = nil, platform: Region.Platform? = nil, bySummonerId summonerId: String, count: Int = 3, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTopChampions(region: Region? = nil, platform: Platform? = nil, bySummonerId summonerId: String, count: Int = 3, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionData = (region: (region ?? parent.region)!, platform: (platform ?? parent.platform)!)
       let options = ["count": count.description]
       let url = parent.createUrl(base: championMasteryBase, region: regionData.region, endpoint: summonerId + "/topChampions", options: options, platform: regionData.platform)

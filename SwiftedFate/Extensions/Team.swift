@@ -11,7 +11,7 @@ import Foundation
 //Team
 public extension SwiftedFate {
   
-  public final class team {
+  public class _team {
     
     internal var parent: SwiftedFate!
     
@@ -21,7 +21,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerId: String - Summoner to get team data from
      */
-    public func getTeams(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeams(region: Region? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: teamBase, region: region, endpoint: "by-summoner/\(summonerId)")
       
@@ -32,9 +32,9 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerIds: String - Summoners to get team data from
      */
-    public func getTeams(region region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeams(region: Region? = nil, bySummonerIds summonerIds: [String], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
-      let summonerIds = summonerIds.joinWithSeparator(",")
+      let summonerIds = summonerIds.joined(separator: ",")
       let url = parent.createUrl(base: teamBase, region: region, endpoint: "by-summoner/\(summonerIds)")
       
       parent.request(url: url, completion: completion)
@@ -44,7 +44,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      teamId: String - Team to get team data from
      */
-    public func getTeam(region region: Region? = nil, byTeamId teamId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeam(region: Region? = nil, byTeamId teamId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: teamBase, region: region, endpoint: teamId)
       
@@ -55,9 +55,9 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      teamIds: String - Teams to get team data from
      */
-    public func getTeam(region region: Region? = nil, byTeamIds teamIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeam(region: Region? = nil, byTeamIds teamIds: [String], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
-      let teamIds = teamIds.joinWithSeparator(",")
+      let teamIds = teamIds.joined(separator: ",")
       let url = parent.createUrl(base: teamBase, region: region, endpoint: teamIds)
       
       parent.request(url: url, completion: completion)

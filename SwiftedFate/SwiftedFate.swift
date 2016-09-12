@@ -12,46 +12,46 @@ public class SwiftedFate {
     
   public var apiKey: String
   public var region: Region
-  public var platform: Region.Platform
+  public var platform: Platform
   public var locale: Options.Locale = .en_US
   
-  public let Champion = champion()
-  public let ChampionMastery = championMastery()
-  public let CurrentGame = currentGame()
-  public let FeaturedGames = featuredGames()
-  public let League = league()
+  public let champion = _champion()
+  public let championMastery = _championMastery()
+  public let currentGame = _currentGame()
+  public let featuredGames = _featuredGames()
+  public let league = _league()
   public let Static = _static()
-  public let Status = status()
-  public let Match = match()
-  public let MatchList = matchList()
-  public let Stats = stats()
-  public let Summoner = summoner()
-  public let Team = team()
+  public let status = _status()
+  public let match = _match()
+  public let matchList = _matchList()
+  public let stats = _stats()
+  public let summoner = _summoner()
+  public let team = _team()
     
   //Create internal session for utility
-  internal let session = NSURLSession.sharedSession()
+  internal let session = URLSession.shared
     
   /*
    @param apiKey - Set's frameworks api key for request usage. Editable.
           region (Optional) - Set's frameworks default region to request against. Editable.
   */
-  public init(apiKey: String, region: Region = .NA, platform: Region.Platform = .NA1) {
+  public init(apiKey: String, region: Region = .na, platform: Platform = .NA1) {
     self.apiKey = apiKey
     self.region = region
     self.platform = platform
     
-    Champion.parent = self
-    ChampionMastery.parent = self
-    CurrentGame.parent = self
-    FeaturedGames.parent = self
-    League.parent = self
+    champion.parent = self
+    championMastery.parent = self
+    currentGame.parent = self
+    featuredGames.parent = self
+    league.parent = self
     Static.parent = self
-    Status.parent = self
-    Match.parent = self
-    MatchList.parent = self
-    Stats.parent = self
-    Summoner.parent = self
-    Team.parent = self
+    status.parent = self
+    match.parent = self
+    matchList.parent = self
+    stats.parent = self
+    summoner.parent = self
+    team.parent = self
   }
     
 }

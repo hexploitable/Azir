@@ -11,7 +11,7 @@ import Foundation
 //Stats
 public extension SwiftedFate {
   
-  public final class stats {
+  public class _stats {
     
     internal var parent: SwiftedFate!
     
@@ -21,7 +21,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerId: String - Summoner to get ranked stat data from
      */
-    public func getRankedStats(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getRankedStats(region: Region? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: statsBase, region: region, endpoint: summonerId + "/ranked")
       
@@ -32,7 +32,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to execute against, or go to default
      summonerId: String - Summoner to get stats summary data from
      */
-    public func getStatsSummary(region region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getStatsSummary(region: Region? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: statsBase, region: region, endpoint: summonerId + "/summary")
       

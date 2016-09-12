@@ -10,7 +10,7 @@ import Foundation
 
 public extension SwiftedFate {
     
-  public final class champion {
+  public class _champion {
     
     internal var parent: SwiftedFate!
     
@@ -20,7 +20,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      freeToPlay: Bool (Optional) - Specify whether you want to filter champions based off free to play
      */
-    public func getChampions(region region: Region? = nil, freeToPlay: Bool = false, completion: (NSDictionary?, Error?) -> Void) {
+    public func getChampions(region: Region? = nil, freeToPlay: Bool = false, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let options = ["freeToPlay": freeToPlay.description]
       let url = parent.createUrl(base: championBase, region: region, endpoint: "", options: options)
@@ -32,7 +32,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      championId: String - Champion's ID to request champion for
      */
-    public func getChampion(region region: Region? = nil, byId championId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getChampion(region: Region? = nil, byId championId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: championBase, region: region, endpoint: "\(championId)")
       

@@ -11,7 +11,7 @@ import Foundation
 //Match
 public extension SwiftedFate {
   
-  public final class match {
+  public class _match {
     
     internal var parent: SwiftedFate!
     
@@ -21,7 +21,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Specify region to request against, or go to default
      matchId: String - Match to get data from
      */
-    public func getMatch(region region: Region? = nil, byMatchId matchId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getMatch(region: Region? = nil, byMatchId matchId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: matchBase, region: region, endpoint: "\(matchId)")
       
