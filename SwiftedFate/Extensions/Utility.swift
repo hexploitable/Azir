@@ -18,25 +18,24 @@ internal extension SwiftedFate {
    options: Dictionary<String, String> - Options to add to url
    platform: Region.Platform - The platform to execute against
    */
-  internal func createUrl(base: String, region: Region, endpoint: String, options: [String: String] = [:], platform: Region.Platform = .NA1) -> String {
+  internal func createUrl(base: String, region: Region, endpoint: String, options: [String: String] = [:], platform: Platform = .NA1) -> String {
     var url = base.replacingOccurrences(of: "region", with: region.rawValue)
     
     url = url.replacingOccurrences(of: "platform", with: platform.rawValue) + endpoint + "?"
     
     for (key, value) in options {
-      url = url + key + "=" + value + "&"
+      url += key + "=" + value + "&"
     }
     
-    url = url + "api_key=" + self.apiKey
-    url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)!
+    url += "api_key=" + self.apiKey
     
-    return url
+    return url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed)!
   }
   
   /*
    @param url: String - The url to get data from
    */
-  internal func request(url: String, completion: (NSDictionary?, Error?) -> Void) {
+  internal func request(url: String, completion: @escaping (AnyObject?, Error?) -> Void) {
     let task = self.session.dataTask(with: URL(string: url)!) { (data, response, error) in
       let response = response as! HTTPURLResponse
       let statusCode = response.statusCode
@@ -48,11 +47,7 @@ internal extension SwiftedFate {
         }else {
           do {
             let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-            if let dictionary = json as? NSDictionary {
-              completion(dictionary, nil)
-            }else {
-              completion([0: json], nil)
-            }
+            completion(json as AnyObject?, nil)
           }catch {
             completion(nil, response.getSFError())
           }

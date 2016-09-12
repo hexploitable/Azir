@@ -11,14 +11,14 @@ import Foundation
 //Status
 public extension SwiftedFate {
   
-  public final class status {
+  public class _status {
     
     internal var parent: SwiftedFate!
     
     private let statusBase = "http://status.leagueoflegends.com/shards/"
     
     //Get all league server shards
-    public func getShards(region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
+    public func getShards(region: Region? = nil, completion: @escaping (NSDictionary?, Error?) -> Void) {
       if region == nil {
         parent.request(url: statusBase, completion: completion)
       }else {

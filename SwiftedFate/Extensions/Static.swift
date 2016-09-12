@@ -11,7 +11,7 @@ import Foundation
 //Static
 public extension SwiftedFate {
     
-  public final class _static {
+  public class _static {
   
     internal var parent: SwiftedFate!
     
@@ -24,7 +24,7 @@ public extension SwiftedFate {
      dataById: Bool (Optional) - Specify to get data by championId, or go to keys
      options: [Options.Champion] (Optional) - Specify to get more data back, or just get default
      */
-    public func getChampions(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", dataById: Bool = false, options: [Options.Champion] = [], completion: (NSDictionary?, Error?) -> Void) {
+    public func getChampions(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", dataById: Bool = false, options: [Options.Champion] = [], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "dataById": dataById.description, "champData": optionsMapped.joined(separator: ",")]
@@ -41,7 +41,7 @@ public extension SwiftedFate {
      dataById: Bool (Optional) - Specify to get data by championId, or go to keys
      options: [Options.Champion] (Optional) - Specify to get more data back, or just get default
      */
-    public func getChampion(region: Region? = nil, byChampionId championId: String, locale: Options.Locale? = nil, version: String = "", dataById: Bool = false, options: [Options.Champion] = [], completion: (NSDictionary?, Error?) -> Void) {
+    public func getChampion(region: Region? = nil, byChampionId championId: String, locale: Options.Locale? = nil, version: String = "", dataById: Bool = false, options: [Options.Champion] = [], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "dataById": dataById.description, "champData": optionsMapped.joined(separator: ",")]
@@ -56,7 +56,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Item] (Optional) - Specify to get more data back, or just get default
      */
-    public func getItems(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Item] = [], completion: (NSDictionary?, Error?) -> Void) {
+    public func getItems(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Item] = [], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "itemListData": optionsMapped.joined(separator: ",")]
@@ -72,7 +72,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Item] (Optional) - Specify to get more data back, or just get default
      */
-    public func getItem(region: Region? = nil, byItemId itemId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Item] = [], completion: (NSDictionary?, Error?) -> Void) {
+    public func getItem(region: Region? = nil, byItemId itemId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Item] = [], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "itemListData": optionsMapped.joined(separator: ",")]
@@ -86,7 +86,7 @@ public extension SwiftedFate {
      locale: Options.Locale (Optional) - Specify locale to get data in, or go to default
      version: String (Optional) - Specify to get dated data, or go to latest
      */
-    public func getLanguageStrings(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", completion: (NSDictionary?, Error?) -> Void) {
+    public func getLanguageStrings(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let options = ["locale": regionalData.locale, "version": version]
       let url = parent.createUrl(base: staticBase, region: regionalData.region, endpoint: "language-strings", options: options)
@@ -104,7 +104,7 @@ public extension SwiftedFate {
      locale: Options.Locale (Optional) - Specify locale to get data in, or go to default
      version: String (Optional) - Specify to get dated data, or go to latest
      */
-    public func getMaps(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", completion: (NSDictionary?, Error?) -> Void) {
+    public func getMaps(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let options = ["locale": regionalData.locale, "version": version]
       let url = parent.createUrl(base: staticBase, region: regionalData.region, endpoint: "map", options: options)
@@ -118,7 +118,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Mastery] (Optional) - Specify to get more data back, or just get default
      */
-    public func getMasteries(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Mastery], completion: (NSDictionary?, Error?) -> Void) {
+    public func getMasteries(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Mastery], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "masteryListData": optionsMapped.joined(separator: ",")]
@@ -134,7 +134,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Mastery] (Optional) - Specify to get more data back, or just get default
      */
-    public func getMastery(region: Region?, byMasteryId masteryId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Mastery] = [], completion: (NSDictionary?, Error?) -> Void) {
+    public func getMastery(region: Region?, byMasteryId masteryId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Mastery] = [], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "masteryListData": optionsMapped.joined(separator: ",")]
@@ -146,7 +146,7 @@ public extension SwiftedFate {
     /*
      @param region: Region (Optional) - Specify region to request against, or go to default
      */
-    public func getRealm(region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
+    public func getRealm(region: Region? = nil, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: staticBase, region: region, endpoint: "realm")
       
@@ -159,7 +159,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Rune] (Optional) - Specify to get more data back, or just get default
      */
-    public func getRunes(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Rune], completion: (NSDictionary?, Error?) -> Void) {
+    public func getRunes(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Rune], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "masteryListData": optionsMapped.joined(separator: ",")]
@@ -175,7 +175,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Rune] (Optional) - Specify to get more data back, or just get default
      */
-    public func getRune(region: Region? = nil, byRuneId runeId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Rune], completion: (NSDictionary?, Error?) -> Void) {
+    public func getRune(region: Region? = nil, byRuneId runeId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Rune], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "masteryListData": optionsMapped.joined(separator: ",")]
@@ -190,7 +190,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Spell] (Optional) - Specify to get more data back, or just get default
      */
-    public func getSummonerSpells(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Spell], completion: (NSDictionary?, Error?) -> Void) {
+    public func getSummonerSpells(region: Region? = nil, locale: Options.Locale? = nil, version: String = "", options: [Options.Spell], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "masteryListData": optionsMapped.joined(separator: ",")]
@@ -206,7 +206,7 @@ public extension SwiftedFate {
      version: String (Optional) - Specify to get dated data, or go to latest
      options: [Options.Spell] (Optional) - Specify to get more data back, or just get default
      */
-    public func getSummonerSpell(region: Region? = nil, bySpellId spellId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Spell], completion: (NSDictionary?, Error?) -> Void) {
+    public func getSummonerSpell(region: Region? = nil, bySpellId spellId: String, locale: Options.Locale? = nil, version: String = "", options: [Options.Spell], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let regionalData = (region: (region ?? parent.region)!, locale: (locale ?? parent.locale)!.rawValue)
       let optionsMapped = options.map {$0.rawValue}
       let options = ["locale": regionalData.locale, "version": version, "masteryListData": optionsMapped.joined(separator: ",")]
@@ -218,7 +218,7 @@ public extension SwiftedFate {
     /*
      @param region: Region (Optional) - Specify region to request against, or go to default
      */
-    public func getVersions(region: Region? = nil, completion: (NSDictionary?, Error?) -> Void) {
+    public func getVersions(region: Region? = nil, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: staticBase, region: region, endpoint: "versions")
       

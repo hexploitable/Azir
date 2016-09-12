@@ -11,7 +11,7 @@ import Foundation
 //League
 public extension SwiftedFate {
     
-  public final class league {
+  public class _league {
     
     internal var parent: SwiftedFate!
     
@@ -21,7 +21,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      summonerId: String - Summoner ID to get leagues from
      */
-    public func getSummonerLeagues(region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getSummonerLeagues(region: Region? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-summoner/\(summonerId)")
       
@@ -32,7 +32,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      summonerIds: Array<String> - Summoner IDs to get leagues from
      */
-    public func getSummonerLeagues(region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getSummonerLeagues(region: Region? = nil, bySummonerIds summonerIds: [String], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let summonerIds = summonerIds.joined(separator: ",")
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-summoner/\(summonerIds)")
@@ -44,7 +44,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      summonerId: String - Summoner ID to get league entries from
      */
-    public func getSummonerLeagueEntries(region: Region? = nil, bySummonerId summonerId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getSummonerLeagueEntries(region: Region? = nil, bySummonerId summonerId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-summoner/\(summonerId)/entry")
       
@@ -55,7 +55,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      summonerIds: Array<String> - Summoner IDs to get league entries from
      */
-    public func getSummonerLeagueEntries(region: Region? = nil, bySummonerIds summonerIds: [String], completion: (NSDictionary?,Error?) -> Void) {
+    public func getSummonerLeagueEntries(region: Region? = nil, bySummonerIds summonerIds: [String], completion: @escaping (NSDictionary?,Error?) -> Void) {
       let region = (region ?? parent.region)!
       let summonerIds = summonerIds.joined(separator: ",")
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-summoner/\(summonerIds)/entry")
@@ -67,7 +67,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      teamId: String - Team ID to get leagues from
      */
-    public func getTeamLeagues(region: Region? = nil, byTeamId teamId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeamLeagues(region: Region? = nil, byTeamId teamId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-team/\(teamId)")
       
@@ -78,7 +78,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      teamIds: Array<String> - Team IDs to get leagues from
      */
-    public func getTeamLeagues(region: Region? = nil, byTeamIds teamIds: [String], completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeamLeagues(region: Region? = nil, byTeamIds teamIds: [String], completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let teamIds = teamIds.joined(separator: ",")
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-team/\(teamIds)")
@@ -90,7 +90,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      teamId: String - Team ID to get league entries from
      */
-    public func getTeamLeagueEntries(region: Region? = nil, byTeamId teamId: String, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeamLeagueEntries(region: Region? = nil, byTeamId teamId: String, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-team/\(teamId)/entry")
       
@@ -101,7 +101,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      teamIds: String - Team IDs to get league entries from
      */
-    public func getTeamLeagueEntries(region: Region? = nil, byTeamIds teamIds: Array<String>, completion: (NSDictionary?, Error?) -> Void) {
+    public func getTeamLeagueEntries(region: Region? = nil, byTeamIds teamIds: Array<String>, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let teamIds = teamIds.joined(separator: ",")
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "by-team/\(teamIds)/entry")
@@ -113,7 +113,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      type: Options.QueueType - Queue to get challenger league from
      */
-    public func getChallengerLeague(region: Region? = nil, byQueue type: Options.QueueType, completion: (NSDictionary?, Error?) -> Void) {
+    public func getChallengerLeague(region: Region? = nil, byQueue type: Options.QueueType, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let options = ["type": type.rawValue]
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "challenger", options: options)
@@ -125,7 +125,7 @@ public extension SwiftedFate {
      @param region: Region (Optional) - Region to execute against
      type: Options.QueueType - Queue to get master league from
      */
-    public func getMasterLeague(region: Region? = nil, byQueue type: Options.QueueType, completion: (NSDictionary?, Error?) -> Void) {
+    public func getMasterLeague(region: Region? = nil, byQueue type: Options.QueueType, completion: @escaping (NSDictionary?, Error?) -> Void) {
       let region = (region ?? parent.region)!
       let options = ["type": type.rawValue]
       let url = parent.createUrl(base: leagueBase, region: region, endpoint: "master", options: options)
