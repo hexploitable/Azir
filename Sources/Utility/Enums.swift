@@ -14,4 +14,8 @@ public extension SwiftedFate {
     case br, eune, euw, jp, kr, lan, las, na, oce, tr, ru
   }
 
+  enum Response: Error {
+    
+  }
+  
 }
