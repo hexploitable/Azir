@@ -1,6 +1,6 @@
 import XCTest
-@testable import SwiftedFateTests
+@testable import SwiftedFate_DevTests
 
 XCTMain([
-     testCase(SwiftedFateTests.allTests),
+     testCase(SwiftedFate_DevTests.allTests),
 ])

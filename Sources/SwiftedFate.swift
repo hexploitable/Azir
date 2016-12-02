@@ -1,23 +1,25 @@
-//
-//  Region.swift
-//  SwiftedFate
-//
-//  Created by Azoy on 10/10/16.
-//
-//
+import Foundation
 
-public struct SwiftedFate {
+public class SwiftedFate {
   
+  public var apiKey: String
   public var region: Region
   
-  public let summoner: SummonerEndpoint
+  public let summoner = SummonerEndpoint()
   
-  public init(apiKey: String, region: Region = .na) {
-    self.region = region
-    
-    let request = Request(apiKey: apiKey)
-    
-    self.summoner = SummonerEndpoint(region: region, request)
-  }
+  #if !os(iOS)
+    let rateLimiter: RateLimiter
+  
+    public init(apiKey: String, region: Region = .na, rateLimiter: RateLimiter = RateLimiter(tenSecond: 10, tenMinute: 500)) {
+      self.apiKey = apiKey
+      self.region = region
+      self.rateLimiter = rateLimiter
+    }
+  #else
+    public init(apiKey: String, region: Region = .na) {
+      self.apiKey = apiKey
+      self.region = region
+    }
+  #endif
   
 }

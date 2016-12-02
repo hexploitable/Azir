@@ -3,10 +3,8 @@ import SwiftedFate
 
 class SwiftedFateTests: XCTestCase {
     func testExample() {
-      let sf = SwiftedFate(apiKey: "hi")
-      sf.summoner.getSummoner(byName: "Azoy") { summoner, error in
-        
-      }
+      let sf = SwiftedFate(apiKey: "")
+      
     }
 
 
