@@ -5,70 +5,62 @@ import Foundation
     
     public class RateLimiter {
       
-      private let tenSecondLimit: Int
-      private var tenSecondTokens: Int
-      private var tenSecondReset = Date()
-      
-      private let tenMinuteLimit: Int
-      private var tenMinuteTokens: Int
-      private var tenMinuteReset = Date()
+      private let tenSLimit: Int
+      private let tenMLimit: Int
       
       private let worker = DispatchQueue(label: "gg.azoy.swiftedfate", qos: .userInitiated)
-      private var queue: [DispatchWorkItem] = []
+      private var queue: [Region: Queue] = [:]
       
-      public init(tenSecond: Int = 10, tenMinute: Int = 500) {
-        self.tenSecondLimit = tenSecond
-        self.tenMinuteLimit = tenMinute
+      public init(tenSLimit: Int = 10, tenMLimit: Int = 500) {
+        self.tenSLimit = tenSLimit
+        self.tenMLimit = tenMLimit
+      }
+      
+      func add(item: DispatchWorkItem, to region: Region) {
+        if queue[region] == nil {
+          queue[region] = Queue(region: region, tenSLimit: tenSLimit, tenMLimit: tenMLimit)
+        }
         
-        self.tenSecondTokens = tenSecond
-        self.tenMinuteTokens = tenMinute
+        queue[region]?.queue.append(item)
+        execute(region: region)
       }
       
-      func add(item: DispatchWorkItem) {
-        queue.append(item)
-        execute()
-      }
-      
-      private func execute() {
+      private func execute(region: Region) {
         let now = Date()
         
-        if now.timeIntervalSince(tenSecondReset) > 10 {
-          tenSecondTokens = tenSecondLimit
-          tenSecondReset = now
+        if now.timeIntervalSince((queue[region]?.tenSReset)!) > 10 {
+          queue[region]?.tenSTokens = tenSLimit
+          queue[region]?.tenSReset = now
         }
         
-        if now.timeIntervalSince(tenMinuteReset) > 600 {
-          tenMinuteTokens = tenMinuteLimit
-          tenMinuteReset = now
+        if now.timeIntervalSince((queue[region]?.tenMReset)!) > 600 {
+          queue[region]?.tenMTokens = tenMLimit
+          queue[region]?.tenMReset = now
         }
         
-        let item = queue.remove(at: 0)
-        
-        if tenSecondTokens != 0 && tenMinuteTokens != 0 {
-          worker.async(execute: item)
-          tenSecondTokens -= 1
-          tenMinuteTokens -= 1
-        }else {
-          if tenSecondTokens == 0 {
-            let waitTime = UInt32(11 - now.timeIntervalSince(tenSecondReset))
-            
-            sleep(waitTime)
-            
-            tenSecondTokens = tenSecondLimit - 1
-            tenSecondReset = now
-          }
+        if queue[region]?.tenSTokens == 0 {
+          let waitTime = UInt32(11 - now.timeIntervalSince((queue[region]?.tenSReset)!))
           
-          if tenMinuteTokens == 0 {
-            let waitTime = UInt32(601 - now.timeIntervalSince(tenMinuteReset))
-            
-            sleep(waitTime)
-            
-            tenMinuteTokens = tenMinuteLimit - 1
-            tenMinuteReset = now
-          }
+          sleep(waitTime)
           
-          worker.async(execute: item)
+          queue[region]?.tenSTokens = tenSLimit
+          queue[region]?.tenSReset = now
         }
+        
+        if queue[region]?.tenMTokens == 0 {
+          let waitTime = UInt32(601 - now.timeIntervalSince((queue[region]?.tenMReset)!))
+          
+          sleep(waitTime)
+          
+          queue[region]?.tenMTokens = tenMLimit
+          queue[region]?.tenMReset = now
+        }
+        
+        let item = self.queue[region]?.queue.remove(at: 0)
+        
+        worker.async(execute: item!)
+        queue[region]?.tenSTokens -= 1
+        queue[region]?.tenMTokens -= 1
       }
       
     }
