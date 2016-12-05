@@ -5,21 +5,18 @@ public class SwiftedFate {
   public var apiKey: String
   public var region: Region
   
-  public let summoner = SummonerEndpoint()
+  public var summoner = _summoner()
   
-  #if !os(iOS)
-    let rateLimiter: RateLimiter
+  let rateLimiter: RateLimiter
+  let session = URLSession()
   
-    public init(apiKey: String, region: Region = .na, rateLimiter: RateLimiter = RateLimiter(tenSLimit: 10, tenMLimit: 500)) {
-      self.apiKey = apiKey
-      self.region = region
-      self.rateLimiter = rateLimiter
-    }
-  #else
-    public init(apiKey: String, region: Region = .na) {
-      self.apiKey = apiKey
-      self.region = region
-    }
-  #endif
+  public init(apiKey: String, region: Region = .na, rateLimit: RateLimitOptions = RateLimitOptions(tenSLimit: 10, tenMLimit: 500)) {
+    self.apiKey = apiKey
+    self.region = region
+    
+    self.rateLimiter = RateLimiter(tenSLimit: rateLimit.tenSLimit, tenMLimit: rateLimit.tenMLimit)
+    
+    summoner.parent = self
+  }
   
 }
