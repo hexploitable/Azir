@@ -21,7 +21,7 @@ public class Endpoint {
       url += "\(key)=\(value)&"
     }
 
-    if url.characters[url.characters.endIndex] == "&" {
+    if url.characters[url.characters.index(before: url.characters.endIndex)] == "&" {
       url.remove(at: url.characters.endIndex)
     }
 

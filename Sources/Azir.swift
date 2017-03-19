@@ -30,7 +30,7 @@ open class Azir {
 
   let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue())
 
-  let summoner = SummonerEndpoint()
+  public let summoner = SummonerEndpoint()
 
   public init(key: String, limit: [Int] = [10, 500], region: Region = .na, cache: Redbird? = nil) {
     self.key = key
